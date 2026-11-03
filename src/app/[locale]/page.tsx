@@ -49,7 +49,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
           />
         </picture>
         <Container className="relative pb-16 pt-12 text-center sm:pb-20 sm:pt-14">
-          <Kicker light className="justify-center">{t.home.kicker}</Kicker>
+          <Kicker light className="justify-center text-center max-sm:[&>span]:hidden">{t.home.kicker}</Kicker>
           <h1 className="font-display text-5xl font-semibold leading-[1.02] text-gilded sm:text-7xl">{t.home.title}</h1>
           <Ornament className="mt-6" />
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{t.home.body}</p>
@@ -87,7 +87,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
                 c.theme === 'herbal' ? 'bg-herbal-800' : 'bg-noir-900',
               )}
             >
-              <Img src={c.cover} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className={cx('-z-20 object-cover transition-transform duration-700 group-hover:scale-105', c.slug === 'perfumes' && 'object-[30%_50%]', c.comingSoon && 'opacity-50 grayscale-[40%]')} />
+              <Img src={c.cover} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className={cx('-z-20 object-cover transition-transform duration-700 group-hover:scale-105', c.comingSoon && 'opacity-50 grayscale-[40%]')} />
               <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-noir-950 via-noir-950/50 to-transparent" />
               {c.comingSoon && <span className="absolute end-5 top-5 rounded-full border border-gold-300/60 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold-100">{t.common.soon}</span>}
               <h3 className="font-display text-4xl font-semibold">{tr(c.name, locale)}</h3>
@@ -172,7 +172,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
             </Link>
           </div>
           <div data-reveal="" className="relative isolate flex flex-col justify-end overflow-hidden rounded-3xl bg-noir-950 p-8 text-white shadow-lift sm:p-12">
-            <Img src="/images/perfumes/royal-oud.webp" alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="-z-20 object-cover object-top opacity-45" />
+            <Img src="/images/perfumes/viraz-oud.webp" alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="-z-20 object-cover object-[50%_30%] opacity-50" />
             <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-noir-950 via-noir-950/70 to-noir-950/10" />
             <h2 className="mt-24 font-display text-4xl font-semibold leading-tight text-gilded sm:text-5xl">{t.home.giftTitle}</h2>
             <p className="mt-4 max-w-md leading-relaxed text-white/75">{t.home.giftBody}</p>

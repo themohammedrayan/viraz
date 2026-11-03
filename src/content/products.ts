@@ -71,7 +71,7 @@ export const categories: Category[] = [
       'Each VIRAZ eau de parfum is blended with premium ingredients — oud, amber, saffron, jasmine and rose — for a fragrance that lasts from morning to night. Bold, refined and made for every moment.',
       'يُمزج كل عطر من VIRAZ بمكوّنات فاخرة — العود والعنبر والزعفران والياسمين والورد — ليمنحك عطرًا يدوم من الصباح حتى المساء. جريء وراقٍ ومصنوع لكل لحظة.',
     ),
-    cover: '/images/hero/banner-desktop.webp',
+    cover: '/images/perfumes/spicy-amber.webp',
     theme: 'noir',
     items: [
       {
@@ -281,7 +281,7 @@ export const categories: Category[] = [
       'We are preparing a range of VIRAZ cosmetics in the same spirit as our perfumes and soaps: premium ingredients, beautiful finishes and honest care. Leave your number on WhatsApp and be the first to know.',
       'نحضّر مجموعة من مستحضرات تجميل VIRAZ بروح عطورنا وصابوننا نفسها: مكوّنات فاخرة ولمسات جميلة وعناية صادقة. اترك رقمك على واتساب لتكون أول من يعلم.',
     ),
-    cover: '/images/perfumes/golden-flora.webp',
+    cover: '/images/perfumes/viraz-oud.webp',
     theme: 'ivory',
     comingSoon: true,
     items: [],

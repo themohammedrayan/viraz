@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "npx serve out",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "images": "node scripts/images.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
