@@ -74,8 +74,18 @@ export function Footer({ locale }: { locale: Locale }) {
       </Container>
 
       <div className="border-t border-white/10">
-        <Container className="flex flex-col gap-2 py-6 text-xs sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {site.name}. {t.footer.rights}</p>
+        {/* extra bottom padding on phones keeps the text clear of the floating WhatsApp / back-to-top buttons */}
+        <Container className="flex flex-col gap-2 pb-28 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between sm:pb-6">
+          <p>
+            © {year} {site.name}. {t.footer.rights}
+            <span className="mx-2 hidden text-white/25 sm:inline" aria-hidden>|</span>
+            <span className="block whitespace-nowrap text-white/45 max-sm:mt-2 sm:inline">
+              {t.footer.builtBy}{' '}
+              {site.builtBy.url
+                ? <a href={site.builtBy.url} target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-gold-300">{site.builtBy.name}</a>
+                : <span className="text-white/70">{site.builtBy.name}</span>}
+            </span>
+          </p>
           <p>
             {t.footer.madeBy}{' '}
             <a href={site.makerUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-gold-300 hover:text-gold-100">{site.maker}</a>

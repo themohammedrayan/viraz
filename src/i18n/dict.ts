@@ -187,6 +187,7 @@ const en = {
     legal: 'Shipping, returns & terms',
     privacy: 'Privacy',
     madeBy: 'A product by',
+    builtBy: 'Built by',
   },
 }
 
@@ -375,6 +376,7 @@ const ar: Dict = {
     legal: 'الشحن والإرجاع والشروط',
     privacy: 'الخصوصية',
     madeBy: 'منتج من',
+    builtBy: 'تطوير',
   },
 }
 

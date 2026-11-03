@@ -10,6 +10,8 @@ export const site = {
   /** Brand owner / manufacturer shown in the footer and legal pages. */
   maker: 'Saaco Global Company',
   makerUrl: 'https://saacoglobal.com',
+  /** Website credit in the footer. Add a URL to make the name a link. */
+  builtBy: { name: 'Mohammed Rayan', url: '' },
   legalName: 'Saaco Global Company', // TODO(verify): registered legal entity name
   url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://viraz.in').replace(/\/$/, ''),
   tagline: { en: 'The Essence of Elegance', ar: 'جوهر الأناقة' } satisfies L,
