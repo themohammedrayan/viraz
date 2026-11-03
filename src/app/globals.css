@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   VIRAZ — brand system taken from the gold emblem and the campaign
+   artwork: warm noir + polished gold on ivory, with a herbal green
+   for the Ayurvedic soap range. Serif display type, airy layouts.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-noir-950: #0b0906;
+  --color-noir-900: #15110b;
+  --color-noir-800: #211a10;
+  --color-noir-700: #2e2516;
+  --color-gold-700: #8a6215;
+  --color-gold-600: #a8781c;
+  --color-gold-500: #c9a04a;
+  --color-gold-400: #d9b66a;
+  --color-gold-300: #e8cf8f;
+  --color-gold-100: #f6ecd2;
+  --color-ivory: #faf6ee;
+  --color-sand: #f1e9da;
+  --color-herbal-800: #1f5622;
+  --color-herbal-700: #2f7d32;
+  --color-herbal-100: #e6f1e1;
+  --color-herbal-50: #f3f8f0;
+  --color-ink: #1c1710;
+  --color-ink-2: #3d3528;
+  --color-muted: #6f6556;
+  --color-line: #e6dccb;
+
+  --font-display: var(--font-display-en), 'Times New Roman', serif;
+  --font-sans: var(--font-body-en), system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(21 17 11 / 0.05), 0 10px 30px -14px rgb(21 17 11 / 0.22);
+  --shadow-lift: 0 2px 4px rgb(21 17 11 / 0.06), 0 26px 50px -20px rgb(21 17 11 / 0.45);
+
+  --animate-fade-in: fade-in 0.9s ease both;
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  --animate-shimmer: shimmer 6s linear infinite;
+  @keyframes shimmer {
+    from { background-position: 0% 50%; }
+    to { background-position: 200% 50%; }
+  }
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html[lang='ar'] {
+  --font-display: var(--font-ar), system-ui, sans-serif;
+  --font-sans: var(--font-ar), system-ui, sans-serif;
+}
+html[lang='ar'] body { line-height: 1.75; }
+html[lang='ar'] .uppercase { text-transform: none; }
+html[lang='ar'] .italic { font-style: normal; }
+html[lang='ar'] [class*='tracking-'] { letter-spacing: 0; }
+html[dir='rtl'] .flip-rtl { transform: scaleX(-1); }
+
+/* Polished-gold text, used sparingly on display headings over noir */
+.text-gilded {
+  background: linear-gradient(100deg, #a8781c 0%, #e8cf8f 25%, #c9a04a 50%, #f6ecd2 70%, #a8781c 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Thin gold rule with a diamond in the middle (echoes the emblem) */
+.rule-diamond {
+  display: flex; align-items: center; gap: 0.75rem; color: var(--color-gold-500);
+}
+.rule-diamond::before, .rule-diamond::after {
+  content: ''; height: 1px; flex: 1; background: linear-gradient(90deg, transparent, currentColor, transparent);
+}
+
+::selection { background: var(--color-gold-300); color: var(--color-noir-950); }
+:focus-visible { outline: 2px solid var(--color-gold-500); outline-offset: 3px; border-radius: 4px; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Scroll reveal (progressive: visible without JS) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js [data-reveal] { opacity: 1; transform: none; }
+}
