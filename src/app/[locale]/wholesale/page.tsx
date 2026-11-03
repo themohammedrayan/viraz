@@ -5,6 +5,7 @@ import { pageMeta } from '@/lib/seo'
 import { PageBanner } from '@/components/PageBanner'
 import { WholesaleForm } from '@/components/WholesaleForm'
 import { Section } from '@/components/ui'
+import { Img } from '@/components/Img'
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/wholesale'>) {
   const locale = await getLocale(params)
@@ -19,9 +20,10 @@ export default async function WholesalePage({ params }: PageProps<'/[locale]/who
   const icons = [Store, Gift, Briefcase]
   return (
     <>
-      <PageBanner locale={locale} eyebrow={t.eyebrow} title={t.title} body={t.body} image="/images/perfumes/golden-flora.webp" crumbs={[{ label: d.nav.wholesale }]} />
+      <PageBanner locale={locale} eyebrow={t.eyebrow} title={t.title} body={t.body} image="/images/brand/perfumes-and-soaps.webp" crumbs={[{ label: d.nav.wholesale }]} />
       <Section>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+          <div className="space-y-5">
           <ul className="space-y-5">
             {t.offers.map((o, i) => {
               const I = icons[i]
@@ -36,6 +38,10 @@ export default async function WholesalePage({ params }: PageProps<'/[locale]/who
               )
             })}
           </ul>
+          <figure data-reveal="" className="overflow-hidden rounded-3xl bg-noir-950 p-3 shadow-lift">
+            <Img src="/images/brand/perfumes-and-soaps.webp" alt="VIRAZ perfumes and herbal soaps — premium quality for personal and commercial use" sizes="(min-width: 1024px) 40vw, 95vw" className="h-auto w-full rounded-2xl" />
+          </figure>
+          </div>
           <WholesaleForm locale={locale} />
         </div>
       </Section>

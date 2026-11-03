@@ -16,7 +16,7 @@ export default async function ShopPage({ params }: PageProps<'/[locale]/shop'>) 
   const t = getDict(locale)
   return (
     <>
-      <PageBanner locale={locale} title={t.shop.title} body={t.shop.body} image="/images/perfumes/spicy-amber.webp" crumbs={[{ label: t.nav.shop }]} />
+      <PageBanner locale={locale} title={t.shop.title} body={t.shop.body} image="/images/perfumes/collection.webp" crumbs={[{ label: t.nav.shop }]} />
       <Section>
         <ShopBrowser locale={locale} />
       </Section>

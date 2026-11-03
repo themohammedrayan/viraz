@@ -7,8 +7,13 @@
  *   node scripts/images.mjs            # fetch missing originals, convert all
  *
  * Originals come from the old WordPress site (viraz.in/wp-content/uploads) and
- * from the pack artwork supplied by the business (soap boxes). To replace a
- * photo, drop the new original into assets-src/ with the same name and re-run.
+ * from artwork supplied by the business (logo, soap boxes, posters). To replace
+ * a photo, drop the new original into assets-src/ with the same name and re-run.
+ *
+ * Some sources are generated first by the Python helpers:
+ *   python3 scripts/logo.py        logo-gold / mark-gold / logo-ink (from logo-glow.png)
+ *   python3 scripts/perfumes.py    perfume-<id>.png bottles + collection band (from range-poster-full.png)
+ *   python3 scripts/collection.py  collection-desktop / -mobile hero composites
  */
 import { existsSync, mkdirSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
@@ -20,16 +25,18 @@ const src = (f) => path.join(root, 'assets-src', f)
 const out = (f) => path.join(root, 'public', f)
 
 const WP = 'https://viraz.in/wp-content/uploads/2026/10/'
-const REMOTE = ['BANNER2-1.jpg', 'BANNER-mobile.jpg', '1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', 'Polished-Gold-Viraz-Luxury-Emblem-1.png']
+const REMOTE = ['BANNER2-1.jpg', 'BANNER-mobile.jpg', '4.jpeg']
+
+export const PERFUMES = ['oud', 'amber', 'blue', 'royal', 'floral', 'rose', 'musk', 'oudh', 'silver', 'zen']
 
 /** [source, destination under public/, max width] */
 const PHOTOS = [
   ['BANNER2-1.jpg', 'images/hero/banner-desktop.webp', 2040],
   ['BANNER-mobile.jpg', 'images/hero/banner-mobile.webp', 940],
-  ['1.jpeg', 'images/perfumes/golden-flora.webp', 1024],
-  ['2.jpeg', 'images/perfumes/spicy-amber.webp', 1024],
-  ['3.jpeg', 'images/perfumes/royal-oud.webp', 1024],
   ['4.jpeg', 'images/perfumes/viraz-oud.webp', 1047],
+  ['perfume-collection.png', 'images/perfumes/collection.webp', 1199],
+  ['range-poster-full.png', 'images/brand/range-poster.webp', 1199],
+  ['brand-poster.png', 'images/brand/perfumes-and-soaps.webp', 1199],
   ['soap-aloe-vera.jpg', 'images/soaps/aloe-vera.webp', 1280],
   ['soap-papaya.jpg', 'images/soaps/papaya.webp', 1280],
   ['soap-rose.jpg', 'images/soaps/rose.webp', 1280],
@@ -55,39 +62,29 @@ async function fetchMissing() {
   }
 }
 
-/**
- * The emblem is gold on pure black. Turn black into transparency by treating
- * brightness as alpha and un-premultiplying the colour, so the glow edges stay
- * smooth on any dark background.
- */
-async function emblem() {
-  const { data, info } = await sharp(src('Polished-Gold-Viraz-Luxury-Emblem-1.png'))
-    .removeAlpha().raw().toBuffer({ resolveWithObject: true })
-  const rgba = Buffer.alloc(info.width * info.height * 4)
-  for (let i = 0, j = 0; i < data.length; i += 3, j += 4) {
-    const r = data[i], g = data[i + 1], b = data[i + 2]
-    const m = Math.max(r, g, b)
-    const a = m < 18 ? 0 : Math.min(255, Math.round(((m - 18) / (255 - 18)) * 255 * 1.35))
-    const k = a ? 255 / Math.max(a, m) : 0
-    rgba[j] = Math.min(255, Math.round(r * k))
-    rgba[j + 1] = Math.min(255, Math.round(g * k))
-    rgba[j + 2] = Math.min(255, Math.round(b * k))
-    rgba[j + 3] = a
-  }
-  const cut = sharp(rgba, { raw: { width: info.width, height: info.height, channels: 4 } })
-  const trimmed = await cut.png().toBuffer().then((b) => sharp(b).trim({ threshold: 1 }).toBuffer())
-  await sharp(trimmed).resize({ width: 480 }).webp({ quality: 88, alphaQuality: 90 }).toFile(out('images/brand/viraz-emblem.webp'))
-
-  // Icons: emblem on the brand's near-black, square
+/** Logos (transparent) and app icons: gold mark centred on the brand noir. */
+async function logos() {
+  const webp = (from, to, width) => sharp(src(from)).resize({ width }).webp({ quality: 90, alphaQuality: 95 }).toFile(out(to))
+  await webp('logo-gold.png', 'images/brand/viraz-logo.webp', 640)
+  await webp('mark-gold.png', 'images/brand/viraz-mark.webp', 320)
+  await webp('logo-ink.png', 'images/brand/viraz-logo-ink.webp', 640)
   const icon = async (size, file) => {
-    const inner = Math.round(size * 0.86)
-    const mark = await sharp(trimmed).resize({ width: inner, height: inner, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).toBuffer()
+    const inner = Math.round(size * 0.8)
+    const mark = await sharp(src('mark-gold.png')).resize({ width: inner, height: inner, fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).toBuffer()
     await sharp({ create: { width: size, height: size, channels: 4, background: '#0b0906' } })
-      .composite([{ input: mark, gravity: 'center' }]).png().toFile(out(file))
+      .composite([{ input: mark, gravity: 'center' }]).png({ compressionLevel: 9, palette: size > 64 }).toFile(out(file))
   }
   await icon(64, 'favicon.png')
   await icon(180, 'apple-touch-icon.png')
   await icon(512, 'icon-512.png')
+}
+
+/** Perfume bottles keep their feathered alpha. */
+async function perfumes() {
+  mkdirSync(out('images/perfumes'), { recursive: true })
+  for (const id of PERFUMES) {
+    await sharp(src(`perfume-${id}.png`)).webp({ quality: 86, alphaQuality: 90 }).toFile(out(`images/perfumes/${id}.webp`))
+  }
 }
 
 async function photos() {
@@ -120,6 +117,7 @@ async function manifest() {
 mkdirSync(out('images/brand'), { recursive: true })
 mkdirSync(path.join(root, 'src/content'), { recursive: true })
 await fetchMissing()
-await emblem()
+await logos()
+await perfumes()
 await photos()
 await manifest()

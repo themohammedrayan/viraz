@@ -26,7 +26,7 @@ export function Footer({ locale }: { locale: Locale }) {
       <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Link href={href(locale)} aria-label="VIRAZ — home" className="inline-block">
-            <Image src="/images/brand/viraz-emblem.webp" alt="VIRAZ — The Essence of Luxury" width={480} height={506} sizes="140px" className="h-32 w-auto" />
+            <Image src="/images/brand/viraz-logo.webp" alt="VIRAZ — The Essence of Elegance" width={640} height={510} sizes="200px" className="h-28 w-auto" />
           </Link>
           <p className="mt-6 max-w-sm leading-relaxed">{t.footer.about}</p>
           <a href={waLink()} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#1fae53] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-[#178f43]">

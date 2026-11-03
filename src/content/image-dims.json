@@ -1,7 +1,23 @@
 {
-  "/images/brand/viraz-emblem.webp": [
-    480,
-    506
+  "/images/brand/perfumes-and-soaps.webp": [
+    1199,
+    1312
+  ],
+  "/images/brand/range-poster.webp": [
+    1199,
+    1312
+  ],
+  "/images/brand/viraz-logo-ink.webp": [
+    640,
+    510
+  ],
+  "/images/brand/viraz-logo.webp": [
+    640,
+    510
+  ],
+  "/images/brand/viraz-mark.webp": [
+    320,
+    278
   ],
   "/images/hero/banner-desktop.webp": [
     2038,
@@ -23,21 +39,53 @@
     1200,
     630
   ],
-  "/images/perfumes/golden-flora.webp": [
-    1024,
-    1536
+  "/images/perfumes/amber.webp": [
+    246,
+    480
   ],
-  "/images/perfumes/royal-oud.webp": [
-    1024,
-    1536
+  "/images/perfumes/blue.webp": [
+    234,
+    480
   ],
-  "/images/perfumes/spicy-amber.webp": [
-    1024,
-    1536
+  "/images/perfumes/collection.webp": [
+    1199,
+    317
+  ],
+  "/images/perfumes/floral.webp": [
+    232,
+    480
+  ],
+  "/images/perfumes/musk.webp": [
+    208,
+    480
+  ],
+  "/images/perfumes/oud.webp": [
+    268,
+    480
+  ],
+  "/images/perfumes/oudh.webp": [
+    208,
+    480
+  ],
+  "/images/perfumes/rose.webp": [
+    214,
+    480
+  ],
+  "/images/perfumes/royal.webp": [
+    242,
+    480
+  ],
+  "/images/perfumes/silver.webp": [
+    228,
+    480
   ],
   "/images/perfumes/viraz-oud.webp": [
     1047,
     1501
+  ],
+  "/images/perfumes/zen.webp": [
+    252,
+    480
   ],
   "/images/soaps/aloe-vera-neem.webp": [
     1280,

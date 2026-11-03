@@ -87,7 +87,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
                 c.theme === 'herbal' ? 'bg-herbal-800' : 'bg-noir-900',
               )}
             >
-              <Img src={c.cover} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className={cx('-z-20 object-cover transition-transform duration-700 group-hover:scale-105', c.comingSoon && 'opacity-50 grayscale-[40%]')} />
+              <Img src={c.cover} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className={cx('-z-20 object-cover transition-transform duration-700 group-hover:scale-105', c.slug === 'perfumes' && 'object-[50%_78%]', c.comingSoon && 'opacity-50 grayscale-[40%]')} />
               <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-noir-950 via-noir-950/50 to-transparent" />
               {c.comingSoon && <span className="absolute end-5 top-5 rounded-full border border-gold-300/60 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold-100">{t.common.soon}</span>}
               <h3 className="font-display text-4xl font-semibold">{tr(c.name, locale)}</h3>
@@ -110,7 +110,10 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
           lead={t.home.perfumesBody}
           action={<ButtonLink href={href(locale, '/shop/perfumes')} variant="light">{t.common.viewAll} <Arrow /></ButtonLink>}
         />
-        <div className="relative grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
+        <div data-reveal="" className="relative mb-12 overflow-hidden rounded-3xl ring-1 ring-gold-500/30">
+          <Img src="/images/perfumes/collection.webp" alt="VIRAZ Premium Perfumes Collection: Oud, Amber, Blue, Royal, Floral, Rose, Musk, Oudh, Silver and Zen eau de parfums" sizes="(min-width: 1248px) 1200px, 100vw" className="h-auto w-full" />
+        </div>
+        <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-10">
           {perfumes.items.map((p) => <ProductCard key={p.id} c={perfumes} p={p} locale={locale} dark />)}
         </div>
       </Section>
@@ -171,12 +174,13 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
               {t.nav.about} <Arrow />
             </Link>
           </div>
-          <div data-reveal="" className="relative isolate flex flex-col justify-end overflow-hidden rounded-3xl bg-noir-950 p-8 text-white shadow-lift sm:p-12">
-            <Img src="/images/perfumes/viraz-oud.webp" alt="" fill sizes="(min-width: 1024px) 50vw, 100vw" className="-z-20 object-cover object-[50%_30%] opacity-50" />
-            <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-noir-950 via-noir-950/70 to-noir-950/10" />
-            <h2 className="mt-24 font-display text-4xl font-semibold leading-tight text-gilded sm:text-5xl">{t.home.giftTitle}</h2>
-            <p className="mt-4 max-w-md leading-relaxed text-white/75">{t.home.giftBody}</p>
-            <ButtonLink href={href(locale, '/wholesale')} className="mt-7 self-start">{t.home.giftCta} <Arrow /></ButtonLink>
+          <div data-reveal="" className="grid items-center gap-8 overflow-hidden rounded-3xl bg-noir-950 p-8 text-white shadow-lift sm:grid-cols-[1fr_12rem] sm:p-10 xl:grid-cols-[1fr_15rem]">
+            <div>
+              <h2 className="font-display text-4xl font-semibold leading-tight text-gilded sm:text-5xl">{t.home.giftTitle}</h2>
+              <p className="mt-4 max-w-md leading-relaxed text-white/75">{t.home.giftBody}</p>
+              <ButtonLink href={href(locale, '/wholesale')} className="mt-7">{t.home.giftCta} <Arrow /></ButtonLink>
+            </div>
+            <Img src="/images/brand/perfumes-and-soaps.webp" alt="VIRAZ perfumes and herbal soaps — premium quality for personal and commercial use" sizes="240px" className="mx-auto h-auto w-48 rotate-2 rounded-xl shadow-lift ring-1 ring-gold-500/40 sm:w-full" />
           </div>
         </div>
       </Section>

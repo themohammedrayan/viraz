@@ -34,7 +34,7 @@ const en = {
   },
   home: {
     kicker: 'Perfumes · Cosmetics · Ayurvedic soaps',
-    title: 'The Essence of Luxury',
+    title: 'The Essence of Elegance',
     body: 'Long-lasting eau de parfums inspired by Arabian tradition, and premium Ayurvedic beauty soaps made in Kerala. Crafted with care, delivered across India.',
     promises: [
       { icon: 'gem', title: 'Long-lasting fragrance', body: 'Eau de parfum concentration that stays from morning to night.' },
@@ -46,7 +46,7 @@ const en = {
     catsTitle: 'Luxury for every ritual',
     perfumesKicker: 'Eau de parfum',
     perfumesTitle: 'Signature fragrances',
-    perfumesBody: 'Four compositions, from luminous florals to majestic oud. Each one long-lasting and unmistakably VIRAZ.',
+    perfumesBody: 'Ten eau de parfums for men and women — from majestic Oud to fresh Blue and serene Zen. Long-lasting, gift-ready and unmistakably VIRAZ.',
     soapsKicker: 'Ayurvedic beauty soaps',
     soapsTitle: 'Herbal care for healthy, glowing skin',
     soapsBody: 'Eight nourishing 125 g bars made in Kerala — aloe vera, neem, papaya, rose, sandal, charcoal, milk and honey oat milk.',
@@ -222,7 +222,7 @@ const ar: Dict = {
   },
   home: {
     kicker: 'عطور · مستحضرات تجميل · صابون أيورفيدي',
-    title: 'جوهر الفخامة',
+    title: 'جوهر الأناقة',
     body: 'عطور فاخرة تدوم طويلًا مستوحاة من التراث العربي، وصابون تجميل أيورفيدي فاخر مصنوع في كيرالا. صُنعت بعناية وتصل إلى جميع أنحاء الهند.',
     promises: [
       { icon: 'gem', title: 'عطر يدوم طويلًا', body: 'تركيز ماء العطر الذي يبقى من الصباح حتى المساء.' },
@@ -234,7 +234,7 @@ const ar: Dict = {
     catsTitle: 'فخامة لكل طقس',
     perfumesKicker: 'ماء العطر',
     perfumesTitle: 'عطور مميزة',
-    perfumesBody: 'أربع تركيبات، من الزهور المشرقة إلى العود الملكي. كلّها تدوم طويلًا وتحمل بصمة VIRAZ.',
+    perfumesBody: 'عشرة عطور للرجال والنساء — من العود الملكي إلى «بلو» المنعش و«زِن» الهادئ. تدوم طويلًا، جاهزة للإهداء، وتحمل بصمة VIRAZ.',
     soapsKicker: 'صابون التجميل الأيورفيدي',
     soapsTitle: 'عناية عشبية لبشرة صحية ومتوهّجة',
     soapsBody: 'ثمانية قوالب مغذّية بوزن 125 غ مصنوعة في كيرالا — الألوفيرا والنيم والبابايا والورد والصندل والفحم والحليب والعسل بالشوفان والحليب.',

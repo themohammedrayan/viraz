@@ -57,6 +57,25 @@ const perfumeHowTo = t(
   'Spray from 15–20 cm onto pulse points: wrists, neck and behind the ears. Do not rub — let the fragrance settle and unfold on the skin. For longer wear, also mist lightly onto clothing.',
   'رُشّ من مسافة 15–20 سم على نقاط النبض: المعصمين والرقبة وخلف الأذنين. لا تفرك، بل اترك العطر يستقرّ وينفتح على البشرة. لثبات أطول، رُشّ رذاذًا خفيفًا على الملابس.',
 )
+const perfumeBenefits = [t('Long-lasting eau de parfum', 'ماء عطر يدوم طويلًا'), t('For men & women', 'للرجال والنساء'), t('An ideal gift', 'هدية مثالية')]
+
+type Pair = [string, string]
+/** One VIRAZ eau de parfum. Image is the bottle cut from the range poster (scripts/perfumes.py). */
+function edpItem(id: string, name: Pair, tagline: Pair, description: Pair, notes: Pair[], family: Pair, accent: string): Product {
+  return {
+    id,
+    name: t(...name),
+    tagline: t(...tagline),
+    image: `/images/perfumes/${id}.webp`,
+    description: t(...description),
+    notes: notes.map((n) => t(...n)),
+    benefits: [...perfumeBenefits, t(...family)],
+    howTo: perfumeHowTo,
+    sizes: edp(1299, 1999), // TODO(verify): real sizes and MRPs per perfume
+    accent,
+  }
+}
+
 const soapHowTo = t(
   'Work the bar into a rich lather with water, massage gently over face and body, then rinse. Use daily. Keep the soap on a draining dish between uses so it lasts longer.',
   'اصنع رغوة غنية بالصابون والماء، ودلّك بلطف على الوجه والجسم ثم اشطف. للاستخدام اليومي. ضع الصابونة على صحن مُصفّى بين الاستخدامات لتدوم أطول.',
@@ -68,74 +87,45 @@ export const categories: Category[] = [
     name: t('Perfumes', 'العطور'),
     short: t('Long-lasting eau de parfums inspired by Arabian tradition.', 'عطور فاخرة تدوم طويلًا مستوحاة من التراث العربي.'),
     intro: t(
-      'Each VIRAZ eau de parfum is blended with premium ingredients — oud, amber, saffron, jasmine and rose — for a fragrance that lasts from morning to night. Bold, refined and made for every moment.',
-      'يُمزج كل عطر من VIRAZ بمكوّنات فاخرة — العود والعنبر والزعفران والياسمين والورد — ليمنحك عطرًا يدوم من الصباح حتى المساء. جريء وراقٍ ومصنوع لكل لحظة.',
+      'Ten signature eau de parfums for men and women — from deep Oud and Oudh to fresh Blue, soft Zen and radiant Rose. Each one blended with premium ingredients, made to last from morning to night and presented as an ideal gift.',
+      'عشرة عطور مميزة للرجال والنساء — من العود والعود الملكي العميقين إلى «بلو» المنعش و«زِن» الناعم و«روز» المشرق. كل عطر ممزوج بمكوّنات فاخرة، يدوم من الصباح حتى المساء، ويُقدَّم كهدية مثالية.',
     ),
-    cover: '/images/perfumes/spicy-amber.webp',
+    cover: '/images/hero/banner-mobile.webp',
     theme: 'noir',
+    // TODO(verify): notes, descriptions and accords below are inferred from each
+    // perfume's name and bottle colour on the range poster — replace with the
+    // perfumer's real notes before launch.
     items: [
-      {
-        id: 'golden-flora',
-        name: t('Golden Flora', 'جولدن فلورا'),
-        tagline: t('Elegant & Feminine', 'أنيق وأنثوي'),
-        image: '/images/perfumes/golden-flora.webp',
-        description: t(
-          'A luminous floral bouquet. White jasmine and soft rose open over a warm, creamy vanilla base — graceful by day, radiant by night.',
-          'باقة زهرية مشرقة. ينفتح الياسمين الأبيض والورد الناعم على قاعدة دافئة كريمية من الفانيليا — رقيق نهارًا ومتألّق ليلًا.',
-        ),
-        notes: [t('Jasmine', 'الياسمين'), t('Rose', 'الورد'), t('Vanilla', 'الفانيليا')],
-        benefits: [t('Long-lasting eau de parfum', 'ماء عطر يدوم طويلًا'), t('Floral · sweet', 'زهري · حلو'), t('Ideal for daytime and celebrations', 'مثالي للنهار والمناسبات')],
-        howTo: perfumeHowTo,
-        sizes: edp(1299, 1999),
-        accent: '#c9a04a',
-        badge: t('Bestseller', 'الأكثر مبيعًا'), // TODO(verify)
-      },
-      {
-        id: 'spicy-amber',
-        name: t('Spicy Amber', 'سبايسي أمبر'),
-        tagline: t('Bold & Irresistible', 'جريء ولا يُقاوَم'),
-        image: '/images/perfumes/spicy-amber.webp',
-        description: t(
-          'Precious saffron and warm spices wrapped in rich amber. A confident, magnetic trail for evenings and special occasions.',
-          'زعفران ثمين وتوابل دافئة يحتضنها عنبر غني. أثر واثق وجذّاب للأمسيات والمناسبات الخاصة.',
-        ),
-        notes: [t('Saffron', 'الزعفران'), t('Amber', 'العنبر'), t('Spices', 'التوابل')],
-        benefits: [t('Long-lasting eau de parfum', 'ماء عطر يدوم طويلًا'), t('Warm · spicy · oriental', 'دافئ · حار · شرقي'), t('Perfect for evenings', 'مثالي للأمسيات')],
-        howTo: perfumeHowTo,
-        sizes: edp(1299, 1999),
-        accent: '#b5651d',
-      },
-      {
-        id: 'royal-oud',
-        name: t('Royal Oud', 'رويال عود'),
-        tagline: t('Deep & Majestic', 'عميق وملكي'),
-        image: '/images/perfumes/royal-oud.webp',
-        description: t(
-          'The king of fragrances. Smoky oud, resinous amber and soft musk create a deep, regal signature with remarkable staying power.',
-          'ملك العطور. عود مدخّن وعنبر راتنجي ومسك ناعم يصنعون بصمة عميقة وملكية بثبات استثنائي.',
-        ),
-        notes: [t('Oud', 'العود'), t('Amber', 'العنبر'), t('Musk', 'المسك')],
-        benefits: [t('Long-lasting eau de parfum', 'ماء عطر يدوم طويلًا'), t('Woody · smoky · rich', 'خشبي · مدخّن · غني'), t('A signature for every occasion', 'بصمة لكل مناسبة')],
-        howTo: perfumeHowTo,
-        sizes: edp(1499, 2299),
-        accent: '#7a5a2a',
-        badge: t('Signature', 'التوقيع'),
-      },
-      {
-        id: 'viraz-oud',
-        name: t('VIRAZ Oud', 'فيراز عود'), // TODO(verify): product name on the bottle reads "Oud Perfumes"
-        tagline: t('Warm & Timeless', 'دافئ وخالد'),
-        image: '/images/perfumes/viraz-oud.webp',
-        description: t(
-          'A classic oud eau de parfum in the house’s signature crown bottle — warm, polished and timeless, for those who love traditional Arabian perfumery.',
-          'عطر عود كلاسيكي في زجاجة التاج المميزة للدار — دافئ وأنيق وخالد، لعشّاق العطور العربية التقليدية.',
-        ),
-        notes: [t('Oud', 'العود'), t('Woods', 'الأخشاب'), t('Amber', 'العنبر')], // TODO(verify)
-        benefits: [t('Long-lasting eau de parfum', 'ماء عطر يدوم طويلًا'), t('Woody · warm', 'خشبي · دافئ'), t('Day to night', 'من النهار إلى الليل')],
-        howTo: perfumeHowTo,
-        sizes: edp(1499, 2299),
-        accent: '#9a6a2c',
-      },
+      edpItem('oud', ['Oud', 'عود'], ['Deep & Majestic', 'عميق وملكي'],
+        ['The king of fragrances: rich, smoky agarwood with warm woods — a deep, regal signature with remarkable staying power.', 'ملك العطور: خشب العود الغني المدخّن مع أخشاب دافئة — بصمة عميقة وملكية بثبات استثنائي.'],
+        [['Oud', 'العود'], ['Woods', 'الأخشاب'], ['Smoke', 'الدخان']], ['Woody · smoky', 'خشبي · مدخّن'], '#1c1710'),
+      edpItem('amber', ['Amber', 'عنبر'], ['Warm & Golden', 'دافئ وذهبي'],
+        ['Glowing amber and soft vanilla wrapped in gentle spice — warm, golden and comforting from first spray to dry-down.', 'عنبر متوهّج وفانيليا ناعمة تحتضنها توابل لطيفة — دافئ وذهبي ومريح من الرشة الأولى حتى الأثر الأخير.'],
+        [['Amber', 'العنبر'], ['Vanilla', 'الفانيليا'], ['Spice', 'التوابل']], ['Warm · oriental', 'دافئ · شرقي'], '#c58b1c'),
+      edpItem('blue', ['Blue', 'بلو'], ['Fresh & Confident', 'منعش وواثق'],
+        ['A cool, fresh burst of citrus and sea breeze over clean woods — confident, energising and easy to wear every day.', 'انتعاش بارد من الحمضيات ونسيم البحر فوق أخشاب نظيفة — واثق ومنشّط وسهل الاستخدام يوميًا.'],
+        [['Citrus', 'الحمضيات'], ['Marine', 'نسيم البحر'], ['Woods', 'الأخشاب']], ['Fresh · aquatic', 'منعش · بحري'], '#1d3f9a'),
+      edpItem('royal', ['Royal', 'رويال'], ['Regal & Radiant', 'ملكي ومشرق'],
+        ['A luminous, regal blend of golden florals and amber woods in a crystal-capped bottle — made for celebrations.', 'مزيج ملكي مشرق من الزهور الذهبية والأخشاب العنبرية في زجاجة بغطاء كريستالي — صُنع للاحتفالات.'],
+        [['Saffron', 'الزعفران'], ['Jasmine', 'الياسمين'], ['Amber', 'العنبر']], ['Floral · amber', 'زهري · عنبري'], '#c9a04a'),
+      edpItem('floral', ['Floral', 'فلورال'], ['Elegant & Feminine', 'أنيق وأنثوي'],
+        ['A rich bouquet of jasmine, violet and white flowers on a soft musky base — graceful by day, radiant by night.', 'باقة غنية من الياسمين والبنفسج والزهور البيضاء على قاعدة مسكية ناعمة — رقيق نهارًا ومتألّق ليلًا.'],
+        [['Jasmine', 'الياسمين'], ['Violet', 'البنفسج'], ['Musk', 'المسك']], ['Floral · powdery', 'زهري · بودري'], '#6b2a8c'),
+      edpItem('rose', ['Rose', 'روز'], ['Romantic & Fresh', 'رومانسي ومنعش'],
+        ['Fresh-cut rose petals with a soft, sweet heart — romantic, bright and endlessly wearable.', 'بتلات ورد مقطوفة حديثًا بقلب ناعم وحلو — رومانسي ومشرق ومناسب لكل وقت.'],
+        [['Rose', 'الورد'], ['Peony', 'الفاوانيا'], ['Soft musk', 'مسك ناعم']], ['Floral · rosy', 'زهري · وردي'], '#d6427a'),
+      edpItem('musk', ['Musk', 'مسك'], ['Clean & Sensual', 'نظيف وجذّاب'],
+        ['Soft white musk with green freshness and a velvety finish — a clean, close-to-skin signature for every day.', 'مسك أبيض ناعم مع انتعاش أخضر ولمسة مخملية — بصمة نظيفة قريبة من البشرة لكل يوم.'],
+        [['White musk', 'المسك الأبيض'], ['Green notes', 'نوتات خضراء'], ['Woods', 'الأخشاب']], ['Musky · fresh', 'مسكي · منعش'], '#1f7a3a'),
+      edpItem('oudh', ['Oudh', 'عود ملكي'], ['Rich & Opulent', 'غني وفاخر'],
+        ['A ruby-red take on oud: precious agarwood softened with rose and saffron for an opulent, evening-ready trail.', 'عود بلمسة ياقوتية: خشب العود الثمين مع الورد والزعفران لأثر فاخر مثالي للأمسيات.'],
+        [['Oud', 'العود'], ['Rose', 'الورد'], ['Saffron', 'الزعفران']], ['Woody · rose', 'خشبي · وردي'], '#a3161c'),
+      edpItem('silver', ['Silver', 'سيلفر'], ['Crisp & Modern', 'منعش وعصري'],
+        ['Crisp, cool and modern — aromatic lavender and bright citrus over smooth woods for a polished, everyday finish.', 'منعش وبارد وعصري — لافندر عطري وحمضيات مشرقة فوق أخشاب ناعمة لإطلالة أنيقة يومية.'],
+        [['Lavender', 'اللافندر'], ['Citrus', 'الحمضيات'], ['Cedar', 'الأرز']], ['Fresh · aromatic', 'منعش · عطري'], '#7d848c'),
+      edpItem('zen', ['Zen', 'زِن'], ['Soft & Serene', 'ناعم وهادئ'],
+        ['A calm, soft cloud of powdery florals and gentle musk — serene, comforting and quietly elegant.', 'سحابة هادئة وناعمة من الزهور البودرية والمسك اللطيف — هادئ ومريح وأنيق بهدوء.'],
+        [['Iris', 'السوسن'], ['Cherry blossom', 'زهر الكرز'], ['Musk', 'المسك']], ['Soft · powdery', 'ناعم · بودري'], '#e07fa6'),
     ],
   },
   {
@@ -196,7 +186,7 @@ export const categories: Category[] = [
         accent: '#e8731a',
       },
       {
-        id: 'rose',
+        id: 'rose-soap',
         name: t('Rose Beauty Soap', 'صابون الورد للتجميل'),
         tagline: t('Softens & glows', 'ينعّم ويضيء'),
         image: '/images/soaps/rose.webp',

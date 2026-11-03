@@ -8,7 +8,7 @@ import { getLocale } from '@/lib/locale'
 import { breadcrumbLd, pageMeta, productLd } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/PageBanner'
 import { AddToBag } from '@/components/AddToBag'
-import { ProductCard } from '@/components/ProductCard'
+import { ProductCard, perfumeImg, perfumeStage } from '@/components/ProductCard'
 import { Img } from '@/components/Img'
 import { WhatsAppIcon } from '@/components/Icon'
 import { JsonLd } from '@/components/JsonLd'
@@ -43,7 +43,7 @@ export default async function ProductPage({ params }: PageProps<'/[locale]/shop/
   const name = tr(p.name, locale)
   const dark = c.theme === 'noir'
   const portrait = c.slug === 'perfumes'
-  const related = c.items.filter((x) => x.id !== p.id).slice(0, portrait ? 3 : 3)
+  const related = c.items.filter((x) => x.id !== p.id).slice(0, portrait ? 4 : 3)
   const trustIcons = [Truck, ShieldCheck, Gift]
   const ask = locale === 'ar' ? `مرحبًا VIRAZ، لدي سؤال عن ${name}.` : `Hello VIRAZ, I have a question about ${name}.`
 
@@ -53,8 +53,8 @@ export default async function ProductPage({ params }: PageProps<'/[locale]/shop/
         <Container className="py-8 sm:py-12">
           <Breadcrumbs locale={locale} light={dark} crumbs={[{ label: t.nav.shop, path: '/shop' }, { label: tr(c.name, locale), path: `/shop/${c.slug}` }, { label: name }]} />
           <div className={cx('mt-8 grid items-start gap-10 lg:gap-16', portrait ? 'lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]' : 'lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]')}>
-            <div className={cx('relative overflow-hidden rounded-3xl shadow-lift', portrait ? 'mx-auto aspect-[2/3] w-full max-w-md lg:max-w-none' : 'aspect-[3/2]', dark ? 'bg-noir-800' : 'bg-sand')}>
-              <Img src={p.image} alt={`${name} — VIRAZ ${c.name.en}`} fill priority sizes={portrait ? '(min-width: 1024px) 40vw, 90vw' : '(min-width: 1024px) 55vw, 95vw'} className="object-cover" />
+            <div className={cx('relative overflow-hidden rounded-3xl shadow-lift', portrait ? cx('mx-auto aspect-[4/5] w-full max-w-md lg:max-w-none ring-1 ring-gold-500/30', perfumeStage) : 'aspect-[3/2] bg-sand')}>
+              <Img src={p.image} alt={`${name} — VIRAZ ${c.name.en}`} fill priority sizes={portrait ? '(min-width: 1024px) 40vw, 90vw' : '(min-width: 1024px) 55vw, 95vw'} className={portrait ? cx(perfumeImg, 'px-[26%]') : 'object-cover'} />
             </div>
 
             <div>
@@ -123,7 +123,7 @@ export default async function ProductPage({ params }: PageProps<'/[locale]/shop/
       {related.length > 0 && (
         <Section tone={dark ? 'noir' : 'herbal'}>
           <SectionTitle light={dark} title={t.product.related} />
-          <div className={cx('grid gap-x-6 gap-y-10', portrait ? 'grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2 lg:grid-cols-3')}>
+          <div className={cx('grid gap-x-6 gap-y-10', portrait ? 'grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2 lg:grid-cols-3')}>
             {related.map((x) => <ProductCard key={x.id} c={c} p={x} locale={locale} dark={dark} />)}
           </div>
         </Section>

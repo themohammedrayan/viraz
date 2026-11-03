@@ -12,6 +12,7 @@ import {
   makeRef, orderMailtoUrl, orderWhatsappUrl, priceLines, validateOrder, type Order, type OrderErrors, type Payment,
 } from '@/lib/order'
 import { QtyStepper } from './AddToBag'
+import { perfumeImg, perfumeStage } from './ProductCard'
 import { Img } from './Img'
 import { WhatsAppIcon } from './Icon'
 import { buttonClass, cx, Field, inputClass } from './ui'
@@ -63,8 +64,8 @@ export function BagView({ locale }: { locale: Locale }) {
             if (!r) return null
             return (
               <li key={`${l.productId}:${l.sizeId}`} className="flex gap-4 p-4 sm:p-5">
-                <Link href={href(locale, `/shop/${r.c.slug}/${r.p.id}`)} className={cx('relative shrink-0 overflow-hidden rounded-xl bg-sand', r.c.slug === 'perfumes' ? 'h-28 w-20' : 'h-20 w-28')}>
-                  <Img src={r.p.image} alt={tr(r.p.name, locale)} fill sizes="112px" className="object-cover" />
+                <Link href={href(locale, `/shop/${r.c.slug}/${r.p.id}`)} className={cx('relative shrink-0 overflow-hidden rounded-xl', r.c.slug === 'perfumes' ? cx('h-28 w-20', perfumeStage) : 'h-20 w-28 bg-sand')}>
+                  <Img src={r.p.image} alt={tr(r.p.name, locale)} fill sizes="112px" className={r.c.slug === 'perfumes' ? perfumeImg : 'object-cover'} />
                 </Link>
                 <div className="flex min-w-0 flex-1 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="min-w-0">

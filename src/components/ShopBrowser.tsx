@@ -59,7 +59,7 @@ export function ShopBrowser({ locale }: { locale: Locale }) {
       {list.length ? (
         <div className="space-y-14">
           {perfumes.length > 0 && (
-            <div className="grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-10">
               {perfumes.map(({ c, p }) => <ProductCard key={p.id} c={c} p={p} locale={locale} reveal={false} />)}
             </div>
           )}

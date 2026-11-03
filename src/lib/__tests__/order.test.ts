@@ -4,12 +4,12 @@ import {
 } from '../order'
 import { findSize } from '@/content/products'
 
-const flora = findSize('golden-flora', '50ml')!.s.mrp
+const oud = findSize('oud', '50ml')!.s.mrp
 const aloe = findSize('aloe-vera', '1x125g')!.s.mrp
 
 function order(over: Partial<Order> = {}): Order {
   const { lines, subtotal } = priceLines([
-    { productId: 'golden-flora', sizeId: '50ml', qty: 1 },
+    { productId: 'oud', sizeId: '50ml', qty: 1 },
     { productId: 'aloe-vera', sizeId: '1x125g', qty: 2 },
   ])
   return {
@@ -21,13 +21,13 @@ function order(over: Partial<Order> = {}): Order {
 describe('priceLines', () => {
   it('prices from the catalogue and skips unknown items', () => {
     const r = priceLines([
-      { productId: 'golden-flora', sizeId: '50ml', qty: 1 },
+      { productId: 'oud', sizeId: '50ml', qty: 1 },
       { productId: 'aloe-vera', sizeId: '1x125g', qty: 2 },
       { productId: 'ghost', sizeId: 'x', qty: 3 },
     ])
     expect(r.lines).toHaveLength(2)
     expect(r.lines[1]).toMatchObject({ name: 'Aloe Vera Beauty Soap', size: '125 g', unit: aloe, total: aloe * 2 })
-    expect(r.subtotal).toBe(flora + aloe * 2)
+    expect(r.subtotal).toBe(oud + aloe * 2)
   })
 })
 
@@ -57,9 +57,9 @@ describe('formatting', () => {
   it('writes a readable WhatsApp order with totals and address', () => {
     const text = formatOrder(order({ notes: 'Gift wrap please' }))
     expect(text).toContain('Ref: VZ-261103-ABCD')
-    expect(text).toContain(`1. Golden Flora (50 ml) × 1 — ₹${flora.toLocaleString('en-IN')}`)
+    expect(text).toContain(`1. Oud (50 ml) × 1 — ₹${oud.toLocaleString('en-IN')}`)
     expect(text).toContain('2. Aloe Vera Beauty Soap (125 g) × 2')
-    expect(text).toContain(`Subtotal (MRP): ₹${(flora + aloe * 2).toLocaleString('en-IN')}`)
+    expect(text).toContain(`Subtotal (MRP): ₹${(oud + aloe * 2).toLocaleString('en-IN')}`)
     expect(text).toContain('Payment: UPI / online')
     expect(text).toContain('Kochi, Kerala 682011')
     expect(text).toContain('Notes: Gift wrap please')

@@ -7,21 +7,30 @@ import { Img } from './Img'
 import { cx } from './ui'
 
 /**
- * Perfume artwork is portrait (2:3), soap boxes are landscape (3:2); each
- * card keeps its category's natural ratio so nothing important is cropped.
+ * Warm ivory-to-gold stage for the perfume bottles. The bottles are cut from
+ * the range poster with feathered edges, so they sit on a matching backdrop
+ * instead of being stretched full-bleed.
+ */
+export const perfumeStage =
+  'bg-[radial-gradient(ellipse_at_50%_42%,#fffaf0_0%,#f6ecd2_42%,#e3c88c_100%)] after:pointer-events-none after:absolute after:inset-x-[18%] after:bottom-[5%] after:h-[5%] after:rounded-[50%] after:bg-noir-950/25 after:blur-md'
+export const perfumeImg = 'z-10 object-contain px-[14%] pb-[7%] pt-[9%] drop-shadow-[0_14px_18px_rgb(21_17_11/0.28)]'
+
+/**
+ * Perfumes are portrait (2:3) bottles on a stage; soap boxes are landscape
+ * (3:2) artwork shown full-bleed.
  */
 export function ProductCard({ c, p, locale, dark, reveal = true }: { c: Category; p: Product; locale: Locale; dark?: boolean; reveal?: boolean }) {
   const t = getDict(locale)
   const portrait = c.slug === 'perfumes'
   return (
     <article {...(reveal ? { 'data-reveal': '' } : {})} className="group relative flex flex-col">
-      <div className={cx('relative overflow-hidden rounded-2xl', portrait ? 'aspect-[2/3]' : 'aspect-[3/2]', dark ? 'bg-noir-800' : 'bg-sand')}>
+      <div className={cx('relative overflow-hidden rounded-2xl', portrait ? cx('aspect-[2/3]', perfumeStage) : 'aspect-[3/2] bg-sand', dark && portrait && 'ring-1 ring-gold-500/30')}>
         <Img
           src={p.image}
           alt={`${tr(p.name, locale)} — VIRAZ`}
           fill
-          sizes={portrait ? '(min-width: 1024px) 23vw, (min-width: 640px) 45vw, 90vw' : '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw'}
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          sizes={portrait ? '(min-width: 1024px) 18vw, (min-width: 640px) 30vw, 45vw' : '(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw'}
+          className={cx('transition-transform duration-700 group-hover:scale-[1.04]', portrait ? perfumeImg : 'object-cover')}
         />
         {p.badge && (
           <span className="absolute start-3 top-3 rounded-full bg-noir-950/85 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-300 backdrop-blur">

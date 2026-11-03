@@ -9,13 +9,13 @@ import { Arrow, ButtonLink, Kicker, Ornament, Section } from '@/components/ui'
 
 const copy = {
   en: {
-    lead: 'VIRAZ — “The Essence of Luxury” — was created to make everyday moments feel royal. Our name is written in Arabic calligraphy and crowned with a gold emblem: a promise of craft, generosity and fine taste.',
+    lead: 'VIRAZ — “The Essence of Elegance” — was created to make everyday moments feel royal. Our name is written in Arabic calligraphy and crowned with a gold emblem: a promise of craft, generosity and fine taste.',
     pillars: [
       {
         kicker: 'Perfumery',
         title: 'Inspired by Arabian tradition',
         body: 'Oud, amber, saffron, musk, jasmine and rose — the treasured materials of Arabian perfumery, composed into modern eau de parfums that last from morning to night. Every bottle is designed to be kept, displayed and gifted.',
-        image: '/images/perfumes/royal-oud.webp',
+        image: '/images/hero/banner-desktop.webp',
       },
       {
         kicker: 'Ayurveda',
@@ -36,13 +36,13 @@ const copy = {
     makerCta: 'Visit Saaco Global',
   },
   ar: {
-    lead: 'وُلدت VIRAZ — «جوهر الفخامة» — لتمنح لحظاتك اليومية طابعًا ملكيًا. يُكتب اسمنا بالخط العربي ويعلوه شعار ذهبي: وعدٌ بالحِرفية والكرم والذوق الرفيع.',
+    lead: 'وُلدت VIRAZ — «جوهر الأناقة» — لتمنح لحظاتك اليومية طابعًا ملكيًا. يُكتب اسمنا بالخط العربي ويعلوه شعار ذهبي: وعدٌ بالحِرفية والكرم والذوق الرفيع.',
     pillars: [
       {
         kicker: 'العطور',
         title: 'مستوحاة من التراث العربي',
         body: 'العود والعنبر والزعفران والمسك والياسمين والورد — أثمن مواد العطور العربية، في تركيبات عصرية من ماء العطر تدوم من الصباح حتى المساء. كل زجاجة مصمّمة لتُقتنى وتُعرض وتُهدى.',
-        image: '/images/perfumes/royal-oud.webp',
+        image: '/images/hero/banner-desktop.webp',
       },
       {
         kicker: 'الأيورفيدا',
@@ -107,6 +107,9 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
         </ul>
       </Section>
       <Section tone="sand">
+        <figure data-reveal="" className="mx-auto mb-14 max-w-xl overflow-hidden rounded-3xl shadow-lift">
+          <Img src="/images/brand/range-poster.webp" alt="The complete VIRAZ collection: six Ayurvedic herbal beauty soaps and ten Premium Perfumes Collection eau de parfums" sizes="(min-width: 640px) 576px, 95vw" className="h-auto w-full" />
+        </figure>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl font-semibold text-noir-900">{c.makerTitle}</h2>
           <p className="mt-4 leading-relaxed text-muted">{c.makerBody}</p>

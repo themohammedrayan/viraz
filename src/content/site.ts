@@ -12,7 +12,7 @@ export const site = {
   makerUrl: 'https://saacoglobal.com',
   legalName: 'Saaco Global Company', // TODO(verify): registered legal entity name
   url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://viraz.in').replace(/\/$/, ''),
-  tagline: { en: 'The Essence of Luxury', ar: 'جوهر الفخامة' } satisfies L,
+  tagline: { en: 'The Essence of Elegance', ar: 'جوهر الأناقة' } satisfies L,
   description: {
     en: 'VIRAZ crafts long-lasting eau de parfums inspired by Arabian tradition and premium Ayurvedic beauty soaps made in Kerala, India. Order on WhatsApp with delivery across India.',
     ar: 'تقدّم VIRAZ عطورًا فاخرة تدوم طويلًا مستوحاة من التراث العربي، وصابونًا أيورفيديًا فاخرًا مصنوعًا في كيرالا، الهند. اطلب عبر واتساب مع التوصيل إلى جميع أنحاء الهند.',

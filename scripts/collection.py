@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFilter
 SRC = 'assets-src/'
 perf_full = Image.open(SRC + 'BANNER-mobile.jpg').convert('RGB')
 soap_full = Image.open(SRC + 'soap-range-poster.jpg').convert('RGB')
-emblem = Image.open('public/images/brand/viraz-emblem.webp').convert('RGBA')
+emblem = Image.open(SRC + 'mark-gold.png').convert('RGBA')  # from scripts/logo.py
 
 PERF_BOX = (0, 690, 941, 1672)      # bottle cluster, below the banner's own logo/headline
 SOAP_BOX = (0, 470, 1170, 1150)     # six boxes, between the poster's title and footer band
@@ -69,7 +69,7 @@ def medallion(d):
     dr.ellipse((pad, pad, pad + d, pad + d), outline=(201, 160, 74, 255), width=ring)
     dr.ellipse((pad + ring * 3, pad + ring * 3, pad + d - ring * 3, pad + d - ring * 3), outline=(201, 160, 74, 110), width=max(1, ring // 2))
     e = emblem.copy()
-    e.thumbnail((int(d * 0.66), int(d * 0.66)), Image.LANCZOS)
+    e.thumbnail((int(d * 0.6), int(d * 0.6)), Image.LANCZOS)
     m.alpha_composite(e, (pad + (d - e.width) // 2, pad + (d - e.height) // 2))
     return m
 

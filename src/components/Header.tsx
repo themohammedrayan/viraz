@@ -50,7 +50,7 @@ export function Header({ locale }: { locale: Locale }) {
       </a>
       <div className="mx-auto flex h-[4.5rem] max-w-[78rem] items-center justify-between gap-4 px-4 sm:px-6 lg:h-20 lg:px-8">
         <Link href={href(locale)} className="flex shrink-0 items-center gap-3" aria-label="VIRAZ — home">
-          <Image src="/images/brand/viraz-emblem.webp" alt="" width={480} height={506} priority sizes="64px" className="h-12 w-auto lg:h-14" />
+          <Image src="/images/brand/viraz-mark.webp" alt="" width={320} height={278} priority sizes="72px" className="h-11 w-auto lg:h-12" />
           <span className="hidden font-display text-xl font-semibold tracking-[0.3em] text-gold-300 sm:inline">VIRAZ</span>
         </Link>
 

@@ -36,7 +36,7 @@ export default async function CategoryPage({ params }: PageProps<'/[locale]/shop
         eyebrow={c.comingSoon ? t.common.soon : tr(c.short, locale)}
         title={name}
         body={tr(c.intro, locale)}
-        image={c.slug === 'soaps' ? '/images/soaps/range.webp' : c.slug === 'perfumes' ? '/images/perfumes/royal-oud.webp' : undefined}
+        image={c.slug === 'soaps' ? '/images/soaps/range.webp' : c.slug === 'perfumes' ? '/images/perfumes/collection.webp' : undefined}
         crumbs={[{ label: t.nav.shop, path: '/shop' }, { label: name }]}
       >
         {c.comingSoon && (
@@ -53,7 +53,7 @@ export default async function CategoryPage({ params }: PageProps<'/[locale]/shop
 
       {c.items.length > 0 ? (
         <Section tone={dark ? 'noir' : c.theme === 'herbal' ? 'herbal' : 'ivory'}>
-          <div className={cx('grid gap-x-6 gap-y-12', c.slug === 'perfumes' ? 'grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2 lg:grid-cols-3')}>
+          <div className={cx('grid gap-x-6 gap-y-12', c.slug === 'perfumes' ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5' : 'sm:grid-cols-2 lg:grid-cols-3')}>
             {c.items.map((p) => <ProductCard key={p.id} c={c} p={p} locale={locale} dark={dark} />)}
           </div>
         </Section>
