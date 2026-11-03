@@ -29,21 +29,21 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
   const t = getDict(locale)
   const perfumes = getCategory('perfumes')!
   const soaps = getCategory('soaps')!
-  const desk = size('/images/hero/banner-desktop.webp')
-  const mob = size('/images/hero/banner-mobile.webp')
+  const desk = size('/images/hero/collection-desktop.webp')
+  const mob = size('/images/hero/collection-mobile.webp')
 
   return (
     <>
-      {/* Hero: the campaign artwork already carries the logo and line-up, so it is shown uncropped and the page title sits beneath it. */}
+      {/* Hero: the whole range in one image (scripts/collection.py), shown uncropped with the page title beneath it. */}
       <section className="bg-noir-950 text-white">
-        <h2 className="sr-only">VIRAZ perfume collection</h2>
+        <h2 className="sr-only">The VIRAZ collection</h2>
         <picture>
-          <source media="(max-width: 639px)" srcSet="/images/hero/banner-mobile.webp" width={mob.width} height={mob.height} />
+          <source media="(max-width: 639px)" srcSet="/images/hero/collection-mobile.webp" width={mob.width} height={mob.height} />
           <img
-            src="/images/hero/banner-desktop.webp"
+            src="/images/hero/collection-desktop.webp"
             width={desk.width}
             height={desk.height}
-            alt="VIRAZ eau de parfum bottles on marble with jasmine, rose, saffron and oud — Premium perfumes for every moment"
+            alt="The VIRAZ collection: eau de parfum bottles beside Papaya, Milk, Aloe Vera & Neem, Honey Oat Milk, Sandal and Charcoal Powder Ayurvedic beauty soaps"
             fetchPriority="high"
             className="block h-auto w-full"
           />
@@ -119,7 +119,7 @@ export default async function Home({ params }: PageProps<'/[locale]'>) {
       <Section tone="herbal">
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
           <div data-reveal="" className="relative mx-auto w-full max-w-md overflow-hidden rounded-3xl shadow-lift lg:max-w-none">
-            <Img src="/images/soaps/collection.webp" alt="VIRAZ Ayurvedic beauty soaps — Aloe Vera, Papaya and Rose boxes with bars" sizes="(min-width: 1024px) 40vw, 90vw" className="h-auto w-full" />
+            <Img src="/images/soaps/range.webp" alt="VIRAZ Ayurvedic herbal beauty soap range — Papaya, Milk, Aloe Vera & Neem, Honey Oat Milk, Sandal and Charcoal Powder" sizes="(min-width: 1024px) 40vw, 90vw" className="h-auto w-full" />
           </div>
           <div>
             <Kicker>{t.home.soapsKicker}</Kicker>

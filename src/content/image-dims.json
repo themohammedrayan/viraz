@@ -11,6 +11,14 @@
     940,
     1670
   ],
+  "/images/hero/collection-desktop.webp": [
+    2400,
+    920
+  ],
+  "/images/hero/collection-mobile.webp": [
+    1080,
+    1705
+  ],
   "/images/og.jpg": [
     1200,
     630
@@ -43,10 +51,6 @@
     1280,
     853
   ],
-  "/images/soaps/collection.webp": [
-    1170,
-    1280
-  ],
   "/images/soaps/honey-oat-milk.webp": [
     1280,
     853
@@ -58,6 +62,10 @@
   "/images/soaps/papaya.webp": [
     1280,
     853
+  ],
+  "/images/soaps/range.webp": [
+    1170,
+    1280
   ],
   "/images/soaps/rose.webp": [
     1280,

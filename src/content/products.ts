@@ -146,7 +146,7 @@ export const categories: Category[] = [
       'The VIRAZ Ayurvedic beauty soap range brings time-honoured herbal care to your daily ritual — aloe vera, neem, sandal, rose, papaya, milk, honey and charcoal — in rich, gentle 125 g bars made in Kerala.',
       'تجمع مجموعة صابون التجميل الأيورفيدي من VIRAZ العناية العشبية العريقة في روتينك اليومي — الألوفيرا والنيم والصندل والورد والبابايا والحليب والعسل والفحم — في قوالب غنية ولطيفة بوزن 125 غ مصنوعة في كيرالا.',
     ),
-    cover: '/images/soaps/collection.webp',
+    cover: '/images/soaps/range.webp',
     theme: 'herbal',
     items: [
       {

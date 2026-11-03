@@ -38,7 +38,10 @@ const PHOTOS = [
   ['soap-charcoal.jpg', 'images/soaps/charcoal.webp', 1280],
   ['soap-milk.jpg', 'images/soaps/milk.webp', 1280],
   ['soap-honey-oat-milk.jpg', 'images/soaps/honey-oat-milk.webp', 1280],
-  ['soap-trio.jpg', 'images/soaps/collection.webp', 1170],
+  ['soap-range-poster.jpg', 'images/soaps/range.webp', 1170],
+  // Built by scripts/collection.py from the perfume banner + soap range poster
+  ['collection-desktop.jpg', 'images/hero/collection-desktop.webp', 2400],
+  ['collection-mobile.jpg', 'images/hero/collection-mobile.webp', 1080],
 ]
 
 async function fetchMissing() {
@@ -93,7 +96,7 @@ async function photos() {
     await sharp(src(from)).resize({ width: w, withoutEnlargement: true }).webp({ quality: 80 }).toFile(out(to))
   }
   // Social share card 1200x630 from the desktop banner
-  await sharp(src('BANNER2-1.jpg')).resize(1200, 630, { fit: 'cover', position: 'left' }).jpeg({ quality: 82 }).toFile(out('images/og.jpg'))
+  await sharp(src('collection-desktop.jpg')).resize(1200, 630, { fit: 'cover', position: 'centre' }).jpeg({ quality: 82 }).toFile(out('images/og.jpg'))
 }
 
 /** Rebuild the dimension manifest from whatever is in public/images. */

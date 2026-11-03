@@ -36,7 +36,7 @@ export default async function CategoryPage({ params }: PageProps<'/[locale]/shop
         eyebrow={c.comingSoon ? t.common.soon : tr(c.short, locale)}
         title={name}
         body={tr(c.intro, locale)}
-        image={c.slug === 'soaps' ? '/images/soaps/collection.webp' : c.slug === 'perfumes' ? '/images/perfumes/royal-oud.webp' : undefined}
+        image={c.slug === 'soaps' ? '/images/soaps/range.webp' : c.slug === 'perfumes' ? '/images/perfumes/royal-oud.webp' : undefined}
         crumbs={[{ label: t.nav.shop, path: '/shop' }, { label: name }]}
       >
         {c.comingSoon && (
